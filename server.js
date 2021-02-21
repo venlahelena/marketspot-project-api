@@ -18,7 +18,7 @@ app.use(cors());
 
 dotenv.config();
 
-app.set('port', (process.env.PORT || 3001));
+app.set('port', (process.env.PORT || 80));
 
 app.get('/', function(req, res) {
     res.send('Marketspot');
