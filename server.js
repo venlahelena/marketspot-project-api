@@ -16,8 +16,9 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-
 dotenv.config();
+
+app.set('port', (process.env.PORT || 3001));
 
 app.get('/', function(req, res) {
     res.send('Marketspot');
@@ -40,7 +41,6 @@ app.use('/signup', signup);
 app.use('/login', login);
 app.use('/images', express.static('images'));
 
-app.set('port', (process.env.PORT || 80));
 
 app.listen(app.get('port'), function() {
     console.log('App is running on port', app.get('port'));
