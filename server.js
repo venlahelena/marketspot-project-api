@@ -31,10 +31,8 @@ mongoose
         useUnifiedTopology: true,
         useCreateIndex: true,
     })
-
-    var conn = mongoose.connection;
-    mongoose.connection.once('open', () => { console.log('MongoDB Conneted')});
-    mongoose.connection.on('error', (err) => { console.log('Connection error: '), err})
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.error(err));
 
 //Routes
 app.use('/products', products);
