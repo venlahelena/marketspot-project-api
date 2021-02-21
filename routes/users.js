@@ -1,14 +1,14 @@
-const express = require('express');
-const router = express.Router();
+var express = require('express');
+var router = express.Router();
 
 //Import User Model
-const Users = require('../models/Users');
+var Users = require('../models/Users');
 
 router.get('/', async (req, res) => {
 
   try {
 
-      const users = await Users.find();
+      var users = await Users.find();
 
       if (!users) throw Error('No users found');
       res.json(users);
@@ -22,7 +22,7 @@ router.get('/:id', async (req, res) => {
 
   try {
 
-      const user = await Users.findById(req.params.id);
+      var user = await Users.findById(req.params.id);
 
       if(!user) throw Error('User not found');
           res.status(200).json(user);

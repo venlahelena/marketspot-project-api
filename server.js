@@ -1,17 +1,17 @@
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
+var express = require('express');
+var cors = require('cors');
+var bodyParser = require('body-parser');
 
-const dotenv = require('dotenv');
-const mongoose = require('mongoose');
+var dotenv = require('dotenv');
+var mongoose = require('mongoose');
 
-const products = require('./routes/products');
-const users = require('./routes/users');
-const signup = require('./routes/signup');
-const login = require('./routes/login');
-const auth = require('./routes/auth');
+var products = require('./routes/products');
+var users = require('./routes/users');
+var signup = require('./routes/signup');
+var login = require('./routes/login');
+var auth = require('./routes/auth');
 
-const app = express();
+var app = express();
 
 app.use(bodyParser.json());
 app.use(cors());

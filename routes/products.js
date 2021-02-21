@@ -1,16 +1,16 @@
-const express = require('express');
-const multer = require('multer');
-const router = express.Router();
+var express = require('express');
+var multer = require('multer');
+var router = express.Router();
 
-const auth = require('./auth');
+var auth = require('./auth');
 
-const { createValidation, updateValidation} = require('../schemas/products');
+var { createValidation, updateValidation} = require('../schemas/products');
 
 //Import Product Model
-const Product = require('../models/Products');
+var Product = require('../models/Products');
 
 //Where to store uploaded images
-const storage = multer.diskStorage({
+var storage = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, './images/');
     },
@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({
+var upload = multer({
     storage: storage, limits: {
     fileSize: 1024 * 1024 * 5
 }});
@@ -27,7 +27,7 @@ const upload = multer({
 //GET all /products
 router.get('/', async (req, res) => {
     try {
-        const products = await Product.find();
+        var products = await Product.find();
         res.status(200).json(products);
     } catch (err) {
         res.status(404).json(err);
@@ -37,10 +37,10 @@ router.get('/', async (req, res) => {
 //POST /Products
 router.post('/', upload.single('productImg'), async (req, res) => {
 
-    const { error } = createValidation(req.body);
+    var { error } = createValidation(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
-    const product = new Product({
+    var product = new Product({
             title: req.body.title,
             description: req.body.description,
             category: req.body.category,
@@ -51,7 +51,7 @@ router.post('/', upload.single('productImg'), async (req, res) => {
         });
 
     try {
-        const newProduct = await product.save();
+        var newProduct = await product.save();
         res.status(200).json(newProduct);
 
     } catch(err) {
@@ -63,7 +63,7 @@ router.post('/', upload.single('productImg'), async (req, res) => {
 router.delete('/:id', async (req, res) => {
 
     try {
-        const deleteProduct = await Product.remove({ _id: req.params.id });
+        var deleteProduct = await Product.remove({ _id: req.params.id });
         res.status(200).json(deleteProduct);
 
     } catch (err) {
@@ -74,7 +74,7 @@ router.delete('/:id', async (req, res) => {
 //Get single product
 router.get('/:id', async (req, res) => {
     try {
-        const product = await Product.findById(req.params.id)
+        var product = await Product.findById(req.params.id)
 
         if(!product) throw Error('Product not found');
             res.status(200).json(product);
@@ -90,7 +90,7 @@ router.put('/:id', async (req, res) => {
 
     try {
         
-    const updatedProduct = await Product.updateOne(
+    var updatedProduct = await Product.updateOne(
         { _id: req.params.id },
         { $set: { title: req.body.title, 
                   description: req.body.description,

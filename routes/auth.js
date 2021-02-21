@@ -1,13 +1,13 @@
-const jwt = require('jsonwebtoken');
+var jwt = require('jsonwebtoken');
 
 module.exports = function(req, res, next) {
 
-    const token = req.header('auth');
+    var token = req.header('auth');
 
     if(!token) return res.status(401).sen('No access');
 
     try {
-        const tokenVerified = jwt.verify(token, process.env.JWT_SECRET);
+        var tokenVerified = jwt.verify(token, process.env.JWT_SECRET);
         req.user = tokenVerified;
 
         next();

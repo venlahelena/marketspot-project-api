@@ -1,9 +1,9 @@
-const Joi = require('@hapi/joi')
+var Joi = require('@hapi/joi')
 
 //Validation schemas
 
-const signupValidation = (data) => {
-const schema = {
+var signupValidation = (data) => {
+var schema = {
     name: Joi.string()
         .min(3)
         .required(),
@@ -25,8 +25,8 @@ const schema = {
     return Joi.validate(data, schema);
 };
 
-const loginValidation = (data) => {
-    const schema = {
+var loginValidation = (data) => {
+    var schema = {
         email: Joi.string()
             .min(6)
             .required()
