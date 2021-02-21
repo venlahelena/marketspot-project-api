@@ -26,13 +26,15 @@ app.get('/', function(req, res) {
 
 //Connect to mongoose database
 mongoose
-    .connect( process.env.DB_CONNECT, { 
+    .connect( process.env.MONGODB_URI, { 
         useNewUrlParser: true, 
         useUnifiedTopology: true,
-        useCreateIndex: true
+        useCreateIndex: true,
     })
-    .then(() => console.log('Connected to MongoDB'))
-    .catch(err => console.error(err));
+
+    var conn = mongoose.connection;
+    mongoose.connection.once('open', () => { console.log('MongoDB Conneted')});
+    mongoose.connection.on('error', (err) => { console.log('Connection error: '), err})
 
 //Routes
 app.use('/products', products);
