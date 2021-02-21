@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 
-
 const products = require('./routes/products');
 const users = require('./routes/users');
 const signup = require('./routes/signup');
@@ -19,6 +18,10 @@ app.use(cors());
 
 
 dotenv.config();
+
+app.get('/', function(req, res) {
+    res.send('Marketspot');
+})
 
 //Connect to mongoose database
 mongoose
