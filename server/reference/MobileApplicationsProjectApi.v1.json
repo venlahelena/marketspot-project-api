@@ -1,0 +1,466 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "MobileApplicationsProjectApi",
+    "version": "1.0",
+    "contact": {
+      "name": "Venla Jokikokko",
+      "email": "t9jove00@students.oamk.fi"
+    },
+    "description": "Mobile Applications ID00BO90-3003 project api"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/products": {
+      "post": {
+        "summary": "",
+        "operationId": "post-products",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ProductData": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Products"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "ProductData": [
+                        {
+                          "id": "fbe72abc-c09f-4c88-be62-e08444fcf273",
+                          "title": "Shirt for sale",
+                          "description": "Yellow shirt for sale",
+                          "category": "Cholting",
+                          "location": "Oulu, Finland",
+                          "image": "png",
+                          "askingPrice": 10.5,
+                          "dateOfPosting": "2021-01-23",
+                          "deliveryType": "Shipping"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Create product"
+      },
+      "get": {
+        "summary": "",
+        "operationId": "get-products",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "description": "Get all products"
+      }
+    },
+    "/users": {
+      "post": {
+        "summary": "",
+        "operationId": "post-users",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "UsersData": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Users"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "description": "Create a new user"
+      }
+    },
+    "/products/{productId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": "productId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Products"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Information with given id was not found."
+          }
+        },
+        "operationId": "get-products-productId",
+        "description": "Get single product information"
+      },
+      "put": {
+        "summary": "",
+        "operationId": "put-products-productId",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "description": "Modify single product"
+      },
+      "delete": {
+        "summary": "",
+        "operationId": "delete-products-productId",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "description": "Delete product"
+      }
+    },
+    "/users/{userId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": "userId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Users"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User with unique id was not found"
+          }
+        },
+        "operationId": "get-users-userId",
+        "description": "Get user inforamtion"
+      }
+    },
+    "/users/login": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "operationId": "get-users-login",
+        "description": "Login user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ]
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "email": "user@example.com",
+                    "password": "pa$$word"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/search": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Products"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-products-search",
+        "description": "Search for a spesific products",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "dateOfPosting": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2021-01-18"
+                  },
+                  "category": {
+                    "type": "string",
+                    "example": "Clothing"
+                  },
+                  "location": {
+                    "type": "string",
+                    "example": "Oulu, Finland"
+                  }
+                }
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "category": "2021-01-18"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Users": {
+        "title": "UserData",
+        "type": "object",
+        "description": "",
+        "x-examples": {
+          "example-1": {
+            "id": "67q-33fss-teA-9hS",
+            "firstName": "Jane",
+            "lastName": "Doe",
+            "email": "name@email.com",
+            "emailVerified": true,
+            "password": "VeryStrongPassword",
+            "passwordVerified": true,
+            "phoneNumber": 401234567
+          }
+        },
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the given user.",
+            "format": "uuid",
+            "example": "fbe72abc-c09f-4c88-be62-e08444fcf273"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "Jane",
+            "description": "Human readable firstname."
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Doe",
+            "description": "Human readable lastname"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "name@email.com",
+            "description": "Human readable email address."
+          },
+          "emailVerified": {
+            "type": "boolean",
+            "description": "Set to true if the user's email has been verified."
+          },
+          "password": {
+            "type": "string",
+            "example": "VeryStrongPassword",
+            "format": "password",
+            "description": "Password ste by user."
+          },
+          "passwordVerified": {
+            "type": "boolean",
+            "description": "Set to true if the user's password has been verified."
+          },
+          "phoneNumber": {
+            "type": "number",
+            "example": 401234567,
+            "description": "Users phone number."
+          }
+        },
+        "required": [
+          "id",
+          "firstName",
+          "lastName",
+          "email",
+          "emailVerified",
+          "password",
+          "passwordVerified",
+          "phoneNumber"
+        ]
+      },
+      "Products": {
+        "title": "ProductData",
+        "type": "object",
+        "description": "Descripes single product",
+        "x-examples": {
+          "example-1": {
+            "id": "23q-24fss-weA-6hD",
+            "title": "Shirt for sale",
+            "description": "Yellow shirt for sale",
+            "category": "Clothing",
+            "location": "Oulu, Finland",
+            "image": "png",
+            "askingPrice": 10.5,
+            "dateOfPosting": "2021-01-23",
+            "deliveryType": "Shipping"
+          }
+        },
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier for the given user.",
+            "example": "8c1d5f2c-e5e8-41bf-91fb-4e6786cf6eb0"
+          },
+          "title": {
+            "type": "string",
+            "description": "Human readable title.",
+            "example": "Shirt for sale"
+          },
+          "description": {
+            "type": "string",
+            "description": "Human readable description of the product.",
+            "example": "Yellow shirt for sale"
+          },
+          "category": {
+            "type": "string",
+            "description": "Human readable category of th product.",
+            "example": "Clothing"
+          },
+          "location": {
+            "type": "string",
+            "description": "Human readable city name.",
+            "example": "Oulu, Finland"
+          },
+          "image": {
+            "type": "string",
+            "example": "png",
+            "description": "Image of the product.",
+            "minLength": 1,
+            "maxLength": 4
+          },
+          "askingPrice": {
+            "type": "number",
+            "format": "float",
+            "example": 10.5,
+            "description": "Human readable price in euros."
+          },
+          "dateOfPosting": {
+            "type": "string",
+            "format": "date",
+            "description": "Human readable date when product has been posted.",
+            "example": "2021-01-23"
+          },
+          "deliveryType": {
+            "type": "string",
+            "description": "Human readable product delivery type",
+            "enum": [
+              "Shipping",
+              "Pickup"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "description",
+          "category",
+          "location",
+          "image",
+          "askingPrice",
+          "dateOfPosting",
+          "deliveryType"
+        ]
+      }
+    }
+  }
+}
