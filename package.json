@@ -18,6 +18,7 @@
     "chai": "^4.3.0",
     "chai-http": "^4.3.0",
     "chai-json-schema": "^1.5.1",
+    "cloudinary": "^1.25.0",
     "config": "^3.3.3",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",

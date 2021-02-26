@@ -1,18 +1,19 @@
-const Joi = require('@hapi/joi')
+var Joi = require('@hapi/joi')
 
 //Validation schemas
 
-const createValidation = (data) => {
-const schema = {
+var createValidation = (data) => {
+var schema = {
     title: Joi.string()
         .min(5)
+        .max(10)
         .required(),
     description: Joi.string()
         .min(10)
         .required(),
-    category: Joi.number()
+    category: Joi.string()
         .min(1)
-        .max(5)
+        .max(10)
         .required(),
     location: Joi.string()
         .min(6)
@@ -23,9 +24,9 @@ const schema = {
         .min(0)
         .max(9999)
         .required(),
-    deliveryType: Joi.number()
+    deliveryType: Joi.string()
         .min(1)
-        .max(2)
+        .max(10)
         .required(),
     };
 

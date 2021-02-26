@@ -12,7 +12,7 @@ var ProductSchema = new Schema({
         required: true,
     },
     category: {
-        type: Number,
+        type: String,
         required: true,
     },
     location: {
@@ -27,7 +27,7 @@ var ProductSchema = new Schema({
         required: true,
     },
     deliveryType: {
-        type: Number,
+        type: String,
         required: true,
     },
     date: {
