@@ -6,7 +6,7 @@ var createValidation = (data) => {
 var schema = {
     title: Joi.string()
         .min(5)
-        .max(10)
+        .max(15)
         .required(),
     description: Joi.string()
         .min(10)
