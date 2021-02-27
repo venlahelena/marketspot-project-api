@@ -9,7 +9,6 @@ var products = require('./routes/products');
 var users = require('./routes/users');
 var signup = require('./routes/signup');
 var login = require('./routes/login');
-var auth = require('./routes/auth');
 
 var app = express();
 
@@ -20,14 +19,14 @@ dotenv.config();
 
 app.set('port', (process.env.PORT || 80));
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
     res.send('Marketspot');
 })
 
 //Connect to mongoose database
 mongoose
-    .connect( process.env.MONGODB_URI, { 
-        useNewUrlParser: true, 
+    .connect(process.env.MONGODB_URI, {
+        useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
     })
@@ -41,9 +40,15 @@ app.use('/signup', signup);
 app.use('/login', login);
 app.use('/images', express.static('images'));
 
+let serverInstance = null;
 
-app.listen(app.get('port'), function() {
-    console.log('App is running on port', app.get('port'));
-});
-
-module.exports = app;
+module.exports = {
+    start: function () {
+        serverInstance = app.listen(app.get('port'), function () {
+            console.log('App is running on port', app.get('port'));
+        });
+    },
+    close: function () {
+        serverInstance.close();
+    },
+}
