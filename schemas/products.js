@@ -13,10 +13,10 @@ var schema = {
         .required(),
     category: Joi.string()
         .min(1)
-        .max(15)
+        .max(20)
         .required(),
     location: Joi.string()
-        .min(6)
+        .min(3)
         .required(),
     productImg: Joi.string()
         .min(999),
