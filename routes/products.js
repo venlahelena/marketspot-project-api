@@ -24,6 +24,8 @@ var upload = multer({
     fileSize: 1024 * 1024 * 5
 }});
 
+*/
+
 //GET all /products
 router.get('/', async (req, res) => {
     try {
@@ -32,7 +34,7 @@ router.get('/', async (req, res) => {
     } catch (err) {
         res.status(404).json(err);
     }
-}); */
+}); 
 
 //POST /Products
 router.post('/', async (req, res) => {
@@ -95,7 +97,6 @@ router.put('/:id', async (req, res) => {
                   description: req.body.description,
                   category: req.body.category,
                   location: req.body.location,
-                  productImg: req.body.images,
                   price: req.body.price,
                   deliveryType: req.body.deliveryType
                 }
