@@ -12,7 +12,7 @@ var storage = cloudinaryStorage({
 
 var parser = multer({ storage: storage });
 
-app.post('/', parser.single('image'), function (req, res) {
+router.post('/', parser.single('image'), function (req, res) {
     console.log(req.file);
     res.status(201);
     res.json(req.file);
