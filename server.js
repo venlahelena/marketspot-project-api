@@ -39,7 +39,7 @@ app.use('/products', products);
 app.use('/users', users);
 app.use('/signup', signup);
 app.use('/login', login);
-app.use('/images', images);
+app.use('/images', express.static('images'));
 
 let serverInstance = null;
 

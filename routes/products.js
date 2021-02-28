@@ -9,7 +9,7 @@ var { createValidation, updateValidation} = require('../schemas/products');
 //Import Product Model
 var Product = require('../models/Products');
 
-/* //Where to store uploaded images
+ //Where to store uploaded images
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, './images/');
@@ -24,7 +24,6 @@ var upload = multer({
     fileSize: 1024 * 1024 * 5
 }});
 
-*/
 
 //GET all /products
 router.get('/', async (req, res) => {
@@ -37,7 +36,7 @@ router.get('/', async (req, res) => {
 }); 
 
 //POST /Products
-router.post('/', auth, async (req, res) => {
+router.post('/', upload.single('img'), async (req, res) => {
 
     var { error } = createValidation(req.body);
     if (error) return res.status(400).send(error.details[0].message);
@@ -48,7 +47,8 @@ router.post('/', auth, async (req, res) => {
             category: req.body.category,
             location: req.body.location,
             price: req.body.price,
-            deliveryType: req.body.deliveryType
+            deliveryType: req.body.deliveryType,
+            img: req.file.path
         });
 
     try {
@@ -98,7 +98,8 @@ router.put('/:id', auth, async (req, res) => {
                   category: req.body.category,
                   location: req.body.location,
                   price: req.body.price,
-                  deliveryType: req.body.deliveryType
+                  deliveryType: req.body.deliveryType,
+                  img: req.file.path
                 }
             });
 
