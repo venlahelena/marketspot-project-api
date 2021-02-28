@@ -9,7 +9,7 @@ var schema = {
         .max(15)
         .required(),
     description: Joi.string()
-        .min(10)
+        .min(1)
         .required(),
     category: Joi.string()
         .min(1)

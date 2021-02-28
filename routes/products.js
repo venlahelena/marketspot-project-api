@@ -37,7 +37,7 @@ router.get('/', async (req, res) => {
 }); 
 
 //POST /Products
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
 
     var { error } = createValidation(req.body);
     if (error) return res.status(400).send(error.details[0].message);
@@ -87,7 +87,7 @@ router.get('/:id', async (req, res) => {
 
 //UPDATE Product
 //Not ideal, but works
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
 
     try {
         
