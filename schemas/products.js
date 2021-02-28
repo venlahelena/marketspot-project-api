@@ -26,8 +26,6 @@ var schema = {
         .min(1)
         .max(20)
         .required(),
-    img: Joi.string()
-        .min(1)
     };
 
     return Joi.validate(data, schema);
