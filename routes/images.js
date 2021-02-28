@@ -4,9 +4,6 @@ var cloudinaryStorage = require('multer-storage-cloudinary');
 var express = require('express');
 var multer = require('multer');
 
-var app = express();
-
-
 var storage = cloudinaryStorage({
     cloudinary: cloudinary,
     folder: '',

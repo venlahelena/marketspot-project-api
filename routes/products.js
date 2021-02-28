@@ -9,7 +9,7 @@ var { createValidation, updateValidation} = require('../schemas/products');
 //Import Product Model
 var Product = require('../models/Products');
 
-//Where to store uploaded images
+/* //Where to store uploaded images
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, './images/');
@@ -32,10 +32,10 @@ router.get('/', async (req, res) => {
     } catch (err) {
         res.status(404).json(err);
     }
-});
+}); */
 
 //POST /Products
-router.post('/', upload.single('productImg'), async (req, res) => {
+router.post('/', async (req, res) => {
 
     var { error } = createValidation(req.body);
     if (error) return res.status(400).send(error.details[0].message);
