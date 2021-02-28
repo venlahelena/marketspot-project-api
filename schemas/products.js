@@ -18,8 +18,6 @@ var schema = {
     location: Joi.string()
         .min(3)
         .required(),
-    productImg: Joi.string()
-        .min(999),
     price: Joi.number()
         .min(0)
         .max(9999)

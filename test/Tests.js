@@ -96,7 +96,6 @@ describe('User signup tests', function () {
                     description: 'testdescription',
                     category: 'testcategory',
                     location: 'testlocation',
-                    productImg: 'testimage.jpg',
                     price: 10,
                     deliveryType: 'testdeliverytype'
                 })
@@ -112,11 +111,10 @@ describe('User signup tests', function () {
             await chai.request('http://localhost:80')
                 .post('/products')
                 .send({
-                    title: 'testtitle',
+                    title: '',
                     description: 'description',
                     category: 'testcategory',
                     location: 'testlocation',
-                    productImg: '',
                     price: 10,
                     deliveryType: 'testdeliverytype'
                 })

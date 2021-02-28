@@ -9,6 +9,7 @@ var products = require('./routes/products');
 var users = require('./routes/users');
 var signup = require('./routes/signup');
 var login = require('./routes/login');
+var images = require('./routes/images');
 
 var app = express();
 
@@ -38,7 +39,7 @@ app.use('/products', products);
 app.use('/users', users);
 app.use('/signup', signup);
 app.use('/login', login);
-app.use('/images', express.static('images'));
+app.use('/images', images);
 
 let serverInstance = null;
 
