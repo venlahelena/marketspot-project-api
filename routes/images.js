@@ -5,10 +5,6 @@ var multer = require('multer');
 
 var Image = require('../models/Images');
 
-var { loginValidation } = require('../schemas/images');
-var Images = require('../models/Images');
-
-
 // Config cloudinary storage for multer-storage-cloudinary
 var storage = cloudinaryStorage({
     cloudinary: cloudinary,
