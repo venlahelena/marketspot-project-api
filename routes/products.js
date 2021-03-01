@@ -36,7 +36,7 @@ router.get('/', async (req, res) => {
 }); 
 
 //POST /Products
-router.post('/', upload.single('image'), async (req, res) => {
+router.post('/', async (req, res) => {
 
     var { error } = createValidation(req.body);
     if (error) return res.status(400).send(error.details[0].message);
@@ -47,7 +47,6 @@ router.post('/', upload.single('image'), async (req, res) => {
             category: req.body.category,
             location: req.body.location,
             price: req.body.price,
-            image: req.file.path,
             deliveryType: req.body.deliveryType,
         });
 
@@ -98,7 +97,6 @@ router.put('/:id', auth, async (req, res) => {
                   category: req.body.category,
                   location: req.body.location,
                   price: req.body.price,
-                  image: req.file.path,
                   deliveryType: req.body.deliveryType,
                 }
             });
