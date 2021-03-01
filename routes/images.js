@@ -12,15 +12,13 @@ var storage = cloudinaryStorage({
     allowedFormats: ['jpg', 'png'],
 });
 
-var parser = multer({ storage: storage });
+var upload = multer({ storage: storage });
 
 
-router.post('/', parser.single('image'), function (req, res) {
-    
-    var image = new Image({
-        image: req.file.path
-    })
-    res.status(200).json(image)
+router.post('/', upload.single('image'), function (req, res) {
+    console.log(req.file);
+    res.status(201);
+    res.json(req.file);
 });
 
 module.exports = router;
