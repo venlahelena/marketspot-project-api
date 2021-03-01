@@ -18,7 +18,7 @@ var upload = multer({ storage: storage });
 router.post('/', upload.single('image'), async (req, res) => {
 
     var image = new Image({
-        image: req.file,
+        image: req.file.path,
     })
 
     try {
