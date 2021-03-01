@@ -9,22 +9,6 @@ var { createValidation, updateValidation} = require('../schemas/products');
 //Import Product Model
 var Product = require('../models/Products');
 
- //Where to store uploaded images
-var storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, './images/');
-    },
-    filename: function(req, file, cb) {
-        cb(null, file.originalname);
-    }
-});
-
-var upload = multer({
-    storage: storage, limits: {
-    fileSize: 1024 * 1024 * 5
-}});
-
-
 //GET all /products
 router.get('/', async (req, res) => {
     try {
