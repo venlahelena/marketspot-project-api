@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 // Create Users Schema
 var UsersSchema = new Schema({
+    _id: mongoose.Schema.Types.ObjectId,
     name: {
       type: String,
       required: true

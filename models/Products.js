@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 //Create schema object
 var ProductSchema = new Schema({
+    _id: mongoose.Schema.Types.ObjectId,
     title: {
         type: String,
         required: true,
@@ -27,10 +28,13 @@ var ProductSchema = new Schema({
         type: String,
         required: true,
     },
+    image: {
+        type: String,
+    },
     date: {
         type: Date,
         default: Date.now
-    }
+    },
 });
 
 module.exports = Products = mongoose.model('products', ProductSchema);

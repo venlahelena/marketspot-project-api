@@ -36,7 +36,7 @@ router.get('/', async (req, res) => {
 }); 
 
 //POST /Products
-router.post('/', async (req, res) => {
+router.post('/', upload.single('image'), async (req, res) => {
 
     var { error } = createValidation(req.body);
     if (error) return res.status(400).send(error.details[0].message);
