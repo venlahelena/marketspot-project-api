@@ -3,6 +3,8 @@ var cloudinary = require('cloudinary');
 var cloudinaryStorage = require('multer-storage-cloudinary');
 var multer = require('multer');
 
+var Image = require('../models/Images');
+
 // Config cloudinary storage for multer-storage-cloudinary
 var storage = cloudinaryStorage({
     cloudinary: cloudinary,
@@ -14,9 +16,11 @@ var parser = multer({ storage: storage });
 
 
 router.post('/', parser.single('image'), function (req, res) {
-    console.log(req.file);
-    res.status(201);
-    res.json(req.file);
+    
+    var image = new Image({
+        image: req.file.path
+    })
+    res.status(200).json(image)
 });
 
 module.exports = router;

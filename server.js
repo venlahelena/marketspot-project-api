@@ -12,7 +12,6 @@ var login = require('./routes/login');
 var images = require('./routes/images');
 
 
-
 var app = express();
 
 app.use(bodyParser.json());
