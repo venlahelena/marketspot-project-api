@@ -9,7 +9,6 @@ var products = require('./routes/products');
 var users = require('./routes/users');
 var signup = require('./routes/signup');
 var login = require('./routes/login');
-var images = require('./routes/images');
 
 var app = express();
 

@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 //Create schema object
 var ProductSchema = new Schema({
+    _id: mongoose.Schema.Types.ObjectId,
     title: {
         type: String,
         required: true,
