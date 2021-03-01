@@ -92,14 +92,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "UsersData": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Users"
-                      }
-                    }
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Users"
                   }
                 }
               }
@@ -110,6 +105,23 @@
           }
         },
         "description": "Create a new user"
+      },
+      "get": {
+        "summary": "",
+        "operationId": "get-users",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Users"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get all users"
       }
     },
     "/products/{productId}": {
@@ -303,6 +315,72 @@
           }
         }
       }
+    },
+    "/users/signup": {
+      "post": {
+        "summary": "",
+        "operationId": "post-users-signup",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Users"
+                }
+              }
+            }
+          }
+        },
+        "description": "Create a new new user"
+      }
+    },
+    "/images": {
+      "post": {
+        "summary": "",
+        "operationId": "post-images",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "description": "Post new image\n"
+      },
+      "get": {
+        "summary": "",
+        "operationId": "get-images",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "description": "Get images array\n"
+      }
+    },
+    "/images/{images._id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "images._id",
+          "in": "path",
+          "required": true
+        }
+      ]
     }
   },
   "components": {
@@ -313,7 +391,7 @@
         "description": "",
         "x-examples": {
           "example-1": {
-            "id": "67q-33fss-teA-9hS",
+            "id": "fbe72abc-c09f-4c88-be62-e08444fcf273",
             "firstName": "Jane",
             "lastName": "Doe",
             "email": "name@email.com",
@@ -327,7 +405,6 @@
           "id": {
             "type": "string",
             "description": "Unique identifier for the given user.",
-            "format": "uuid",
             "example": "fbe72abc-c09f-4c88-be62-e08444fcf273"
           },
           "firstName": {
@@ -383,7 +460,7 @@
         "description": "Descripes single product",
         "x-examples": {
           "example-1": {
-            "id": "23q-24fss-weA-6hD",
+            "id": "8c1d5f2c-e5e8-41bf-91fb-4e6786cf6eb0",
             "title": "Shirt for sale",
             "description": "Yellow shirt for sale",
             "category": "Clothing",
@@ -391,13 +468,13 @@
             "image": "png",
             "askingPrice": 10.5,
             "dateOfPosting": "2021-01-23",
-            "deliveryType": "Shipping"
+            "shipping": true,
+            "pickup": true
           }
         },
         "properties": {
           "id": {
             "type": "string",
-            "format": "uuid",
             "description": "Unique identifier for the given user.",
             "example": "8c1d5f2c-e5e8-41bf-91fb-4e6786cf6eb0"
           },
@@ -440,13 +517,12 @@
             "description": "Human readable date when product has been posted.",
             "example": "2021-01-23"
           },
-          "deliveryType": {
-            "type": "string",
-            "description": "Human readable product delivery type",
-            "enum": [
-              "Shipping",
-              "Pickup"
-            ]
+          "shipping": {
+            "type": "boolean",
+            "deprecated": true
+          },
+          "pickup": {
+            "type": "boolean"
           }
         },
         "required": [
@@ -457,9 +533,27 @@
           "location",
           "image",
           "askingPrice",
-          "dateOfPosting",
-          "deliveryType"
+          "dateOfPosting"
         ]
+      },
+      "Images": {
+        "title": "Images",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "x-examples": {
+          "example-1": {
+            "id": "string",
+            "image": "http://example.com"
+          }
+        }
       }
     }
   }
