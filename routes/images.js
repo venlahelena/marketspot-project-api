@@ -5,6 +5,10 @@ var multer = require('multer');
 
 var Image = require('../models/Images');
 
+var { loginValidation } = require('../schemas/images');
+var Images = require('../models/Images');
+
+
 // Config cloudinary storage for multer-storage-cloudinary
 var storage = cloudinaryStorage({
     cloudinary: cloudinary,
@@ -15,10 +19,19 @@ var storage = cloudinaryStorage({
 var upload = multer({ storage: storage });
 
 
-router.post('/', upload.single('image'), function (req, res) {
-    console.log(req.file);
-    res.status(201);
-    res.json(req.file);
+router.post('/', upload.single('image'), async (req, res) => {
+
+    var image = new Image({
+        image: req.file,
+    })
+
+    try {
+        var newImage = await image.save();
+        res.status(200).json(newImage);
+
+    } catch (err) {
+        res.status(404).json(err);
+    }
 });
 
 module.exports = router;

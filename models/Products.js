@@ -1,3 +1,4 @@
+const { boolean } = require('@hapi/joi');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
@@ -23,9 +24,11 @@ var ProductSchema = new Schema({
         type: Number,
         required: true,
     },
-    deliveryType: {
-        type: String,
-        required: true,
+    shipping: {
+        type: Boolean,
+    },
+    pickup: {
+        type: Boolean,
     },
     date: {
         type: Date,
