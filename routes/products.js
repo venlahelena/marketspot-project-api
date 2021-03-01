@@ -47,6 +47,7 @@ router.post('/', upload.single('image'), async (req, res) => {
             category: req.body.category,
             location: req.body.location,
             price: req.body.price,
+            image: req.file.path,
             deliveryType: req.body.deliveryType,
         });
 
@@ -97,6 +98,7 @@ router.put('/:id', auth, async (req, res) => {
                   category: req.body.category,
                   location: req.body.location,
                   price: req.body.price,
+                  image: req.file.path,
                   deliveryType: req.body.deliveryType,
                 }
             });
