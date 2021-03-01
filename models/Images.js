@@ -8,4 +8,4 @@ var ImageSchema = new Schema({
     },
 });
 
-module.exports = Products = mongoose.model('images', ImageSchema);
+module.exports = Images = mongoose.model('images', ImageSchema);
