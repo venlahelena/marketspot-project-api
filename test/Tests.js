@@ -97,7 +97,8 @@ describe('User signup tests', function () {
                     category: 'testcategory',
                     location: 'testlocation',
                     price: 10,
-                    deliveryType: 'testdeliverytype'
+                    shippig: true,
+                    pickup: false
                 })
                 .then(res => {
                     expect(res.status).to.equal(200);
@@ -116,7 +117,8 @@ describe('User signup tests', function () {
                     category: 'testcategory',
                     location: 'testlocation',
                     price: 10,
-                    deliveryType: 'testdeliverytype'
+                    shippig: true,
+                    pickup: false
                 })
                 .then(res => {
                     expect(res.status).to.equal(400);

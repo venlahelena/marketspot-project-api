@@ -22,10 +22,8 @@ var schema = {
         .min(0)
         .max(9999)
         .required(),
-    deliveryType: Joi.string()
-        .min(1)
-        .max(20)
-        .required(),
+    shipping: Joi.boolean(),
+    pickup: Joi.boolean(),
     };
 
     return Joi.validate(data, schema);

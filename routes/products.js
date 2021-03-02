@@ -32,7 +32,8 @@ router.post('/', async (req, res) => {
             category: req.body.category,
             location: req.body.location,
             price: req.body.price,
-            deliveryType: req.body.deliveryType,
+            shipping: req.body.shipping,
+            pickup: req.body.pickup
         });
 
     try {
@@ -82,7 +83,8 @@ router.put('/:id', auth, async (req, res) => {
                   category: req.body.category,
                   location: req.body.location,
                   price: req.body.price,
-                  deliveryType: req.body.deliveryType,
+                  shipping: req.body.shipping,
+                  pickup: req.body.pickup,
                 }
             });
 
