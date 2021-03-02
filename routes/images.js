@@ -2,8 +2,6 @@ var router = require('express').Router();
 var cloudinary = require('cloudinary');
 var cloudinaryStorage = require('multer-storage-cloudinary');
 var multer = require('multer');
-var fs = require('fs');
-var path = require('path');
 
 var Image = require('../models/Images');
 
