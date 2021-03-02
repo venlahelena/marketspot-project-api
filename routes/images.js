@@ -13,11 +13,24 @@ var storage = cloudinaryStorage({
 
 var upload = multer({ storage: storage });
 
-router.post('/', upload.single('image'), (req, res, next) => {
+router.post('/', upload.single('image'), async (req, res) => {
 
-    var imag = {
+    var img = new Image ({
         image: req.file.path
+      });
+
+      try {
+
+        var newImg = await img.save();
+        res.status(400).json(newImg)
+
+      } catch {
+
+        res.status(404).json(err);
+        console.log(err);
+
       }
 });
+
 
 module.exports = router;
