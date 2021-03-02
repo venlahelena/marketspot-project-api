@@ -2,32 +2,49 @@ var router = require('express').Router();
 var cloudinary = require('cloudinary');
 var cloudinaryStorage = require('multer-storage-cloudinary');
 var multer = require('multer');
+var fs = require('fs');
+var path = require('path');
 
 var Image = require('../models/Images');
 
-// Config cloudinary storage for multer-storage-cloudinary
 var storage = cloudinaryStorage({
     cloudinary: cloudinary,
-    folder: '', // give cloudinary folder where you want to store images
+    folder: 'images',
     allowedFormats: ['jpg', 'png'],
 });
 
 var upload = multer({ storage: storage });
 
+app.get('/', (req, res) => {
+    Images.find({}, (err, items) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send('An error occurred', err);
+        }
+        else {
+            res.render('imagesPage', { items: items });
+        }
+    });
+});
 
-router.post('/', upload.single('image'), async (req, res) => {
 
-    var image = new Image({
-        image: req.file.path,
+router.post('/', upload.single('image'), (req, res, next) => {
+
+    var image = {
+        name: req.body.name,
+        desc: req.body.desc,
+        img:  {
+            data: fs.readFileSync(path.join(__dirname + 'images/' + req.file.filename)),
+            contentType: 'img/png'
+        }
+      }
+      Images.create(image, (err, item) => {
+          if(err) {
+              console.log(err);
+          } else {
+              res.redirect('/');
+          }
     })
-
-    try {
-        var newImage = await image.save();
-        res.status(200).json(newImage);
-
-    } catch (err) {
-        res.status(404).json(err);
-    }
 });
 
 module.exports = router;
