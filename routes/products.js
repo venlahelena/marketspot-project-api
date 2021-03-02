@@ -9,6 +9,7 @@ var { createValidation, updateValidation} = require('../schemas/products');
 //Import Product Model
 var Product = require('../models/Products');
 
+
 //GET all /products
 router.get('/', async (req, res) => {
     try {
